@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="font_size">40sp</dimen>
-    <dimen name="global_margin">5dp</dimen>
+    <dimen name="global_margin">15dp</dimen>
+    <dimen name="final_margin">5dp</dimen>
     <dimen name="text_show_size">100sp</dimen>
     <dimen name="btn_global_width">95dp</dimen>
+    <dimen name="btn_large_width">295dp</dimen>
 </resources>
