@@ -17,83 +17,58 @@ class MainActivity : AppCompatActivity() {
         var expression = binding.expression
 
         val numberZero = binding.btnNumber0.setOnClickListener {
-
-            addExpression("0", true)
+            expression.append("0")
         }
         val numberOne = binding.btnNumberOne.setOnClickListener {
-
-            addExpression("1", true)
+            expression.append("1")
         }
         val numberTwo = binding.btnNumberTwo.setOnClickListener {
-
-            addExpression("2", true)
+            expression.append("2")
         }
         val numberThree = binding.btnNumberThree.setOnClickListener {
-            addExpression("3", true)
+            expression.append("3")
         }
         val numberFour = binding.btnNumberFour.setOnClickListener {
-            addExpression("4", true)
+            expression.append("4")
         }
         val numberFive = binding.btnNumberFive.setOnClickListener {
-            addExpression("5", true)
+            expression.append("5")
         }
         val numberSix = binding.btnNumberSix.setOnClickListener {
-            addExpression("6", true)
+            expression.append("6")
         }
         val numberSeven = binding.btnNumberSeven.setOnClickListener {
-            addExpression("7", true)
+            expression.append("7")
         }
         val numberEight = binding.btnNumberEight.setOnClickListener {
-            addExpression("8", true)
+            expression.append("8")
         }
         val numberNine = binding.btnNumberNine.setOnClickListener {
-            addExpression("9", true)
+            expression.append("9")
         }
 
         val multiply = binding.btnMultiply.setOnClickListener {
 
-            addExpression("*", false)
+            expression.append("*")
         }
         val division = binding.btnDivision.setOnClickListener {
 
-            addExpression("/", false)
+            expression.append("/")
         }
         val minus = binding.btnMinus.setOnClickListener {
 
-            addExpression("-", false)
+            expression.append("-")
         }
         val plus = binding.btnPlus.setOnClickListener {
-            addExpression("+", false)
+            expression.append("+")
         }
 
         val clear = binding.btnClear.setOnClickListener {
-            expression.text = "0"
+            expression.text = ""
             result.text = "0"
         }
 
         supportActionBar?.hide()
-
-
-    }
-
-
-    fun addExpression(string: String, clear: Boolean) {
-
-        var result = binding.result
-        var expression = binding.expression
-
-        if (result.text.isNotEmpty()) {
-            expression.text = ""
-        }
-
-        if (clear) {
-            result.text = ""
-            expression.append(string)
-        } else {
-            expression.append(result.text)
-            expression.append(string)
-            result.text = "0"
-        }
 
     }
 
