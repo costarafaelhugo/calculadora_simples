@@ -13,6 +13,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var result = binding.result
+        var expression = binding.expression
 
         val numberZero = binding.btnNumber0.setOnClickListener {
 
@@ -48,6 +50,26 @@ class MainActivity : AppCompatActivity() {
             addExpression("9", true)
         }
 
+        val multiply = binding.btnMultiply.setOnClickListener {
+
+            addExpression("*", false)
+        }
+        val division = binding.btnDivision.setOnClickListener {
+
+            addExpression("/", false)
+        }
+        val minus = binding.btnMinus.setOnClickListener {
+
+            addExpression("-", false)
+        }
+        val plus = binding.btnPlus.setOnClickListener {
+            addExpression("+", false)
+        }
+
+        val clear = binding.btnClear.setOnClickListener {
+            expression.text = "0"
+            result.text = "0"
+        }
 
         supportActionBar?.hide()
 
@@ -55,26 +77,24 @@ class MainActivity : AppCompatActivity() {
     }
 
 
-
-
     fun addExpression(string: String, clear: Boolean) {
+
         var result = binding.result
         var expression = binding.expression
 
         if (result.text.isNotEmpty()) {
-            expression.setText("")
+            expression.text = ""
         }
 
         if (clear) {
-            result.setText("")
+            result.text = ""
             expression.append(string)
         } else {
             expression.append(result.text)
             expression.append(string)
-            result.setText("")
+            result.text = "0"
         }
+
     }
 
 }
-
-
