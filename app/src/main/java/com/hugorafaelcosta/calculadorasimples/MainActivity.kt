@@ -13,8 +13,16 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        supportActionBar?.hide()
+        makeNumbers()
+
+    }
+
+
+    fun makeNumbers(){
         var result = binding.result
         var expression = binding.expression
+
 
         val numberZero = binding.btnNumber0.setOnClickListener {
             expression.append("0")
@@ -50,26 +58,29 @@ class MainActivity : AppCompatActivity() {
         val multiply = binding.btnMultiply.setOnClickListener {
 
             expression.append("*")
+            result.text = expression.text.dropLast(1)
         }
         val division = binding.btnDivision.setOnClickListener {
 
             expression.append("/")
+            result.text = expression.text.dropLast(1)
         }
         val minus = binding.btnMinus.setOnClickListener {
 
             expression.append("-")
+            result.text = expression.text.dropLast(1)
         }
         val plus = binding.btnPlus.setOnClickListener {
             expression.append("+")
+            result.text = expression.text.dropLast(1)
         }
+
+
 
         val clear = binding.btnClear.setOnClickListener {
             expression.text = ""
             result.text = "0"
         }
 
-        supportActionBar?.hide()
-
     }
-
 }
