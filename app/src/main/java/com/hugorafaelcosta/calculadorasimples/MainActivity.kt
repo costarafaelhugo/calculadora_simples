@@ -2,6 +2,7 @@ package com.hugorafaelcosta.calculadorasimples
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatTextView
 import com.hugorafaelcosta.calculadorasimples.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
@@ -13,17 +14,39 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        var result = binding.result
+        var expression = binding.expression
+
         supportActionBar?.hide()
         makeNumbers()
+        makeExpressions()
+        clear(expression, result)
 
     }
 
 
-    fun makeNumbers(){
-        var result = binding.result
+    fun makeExpressions() {
         var expression = binding.expression
 
+        val multiply = binding.btnMultiply.setOnClickListener {
+            expression.append("*")
+        }
 
+        val division = binding.btnDivision.setOnClickListener {
+            expression.append("/")
+        }
+
+        val minus = binding.btnMinus.setOnClickListener {
+            expression.append("-")
+        }
+
+        val plus = binding.btnPlus.setOnClickListener {
+            expression.append("+")
+        }
+    }
+
+    fun makeNumbers(): AppCompatTextView {
+        var expression = binding.expression
         val numberZero = binding.btnNumber0.setOnClickListener {
             expression.append("0")
         }
@@ -54,33 +77,17 @@ class MainActivity : AppCompatActivity() {
         val numberNine = binding.btnNumberNine.setOnClickListener {
             expression.append("9")
         }
+        return expression
+    }
 
-        val multiply = binding.btnMultiply.setOnClickListener {
+    fun makeResult() {
+        var result = binding.result
+    }
 
-            expression.append("*")
-            result.text = expression.text.dropLast(1)
-        }
-        val division = binding.btnDivision.setOnClickListener {
-
-            expression.append("/")
-            result.text = expression.text.dropLast(1)
-        }
-        val minus = binding.btnMinus.setOnClickListener {
-
-            expression.append("-")
-            result.text = expression.text.dropLast(1)
-        }
-        val plus = binding.btnPlus.setOnClickListener {
-            expression.append("+")
-            result.text = expression.text.dropLast(1)
-        }
-
-
-
+    private fun clear(expression: AppCompatTextView, result: AppCompatTextView) {
         val clear = binding.btnClear.setOnClickListener {
             expression.text = ""
             result.text = "0"
         }
-
     }
 }
