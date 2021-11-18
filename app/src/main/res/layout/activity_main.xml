@@ -147,8 +147,14 @@
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_number_0"
             style="@style/numbers_button"
-            android:layout_weight="3"
+            android:layout_weight="1.5"
             android:text="0"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_dot"
+            style="@style/numbers_button"
+            android:layout_weight="1.5"
+            android:text="."/>
 
 
 
