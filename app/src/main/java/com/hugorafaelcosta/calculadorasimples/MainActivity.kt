@@ -11,6 +11,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var tvEntrada: TextView? = null
+    private var tvResultado: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         tvEntrada = binding.entrada
+        tvResultado = binding.result
 
         binding.btnNumber0.setOnClickListener {
             getDigitos(binding.btnNumber0)
@@ -49,11 +51,27 @@ class MainActivity : AppCompatActivity() {
         binding.btnNumberNine.setOnClickListener {
             getDigitos(binding.btnNumberNine)
         }
+        binding.btnDot.setOnClickListener {
+            getDigitos(binding.btnDot)
+        }
+
+        binding.btnClear.setOnClickListener {
+            clearAll(binding.btnClear)
+        }
+
+        binding.btnClear.setOnClickListener {
+            clearAll(binding.btnClear)
+        }
 
     }
 
     fun getDigitos(view: View) {
         tvEntrada?.append((view as Button).text)
+    }
+
+    fun clearAll(view: View) {
+        tvEntrada?.text = " "
+        tvResultado?.text = " "
     }
 
 
