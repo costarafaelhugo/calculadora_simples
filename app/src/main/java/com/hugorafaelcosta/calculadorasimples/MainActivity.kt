@@ -1,93 +1,60 @@
 package com.hugorafaelcosta.calculadorasimples
 
 import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.AppCompatTextView
 import com.hugorafaelcosta.calculadorasimples.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private var tvEntrada: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        var result = binding.result
-        var expression = binding.expression
+        tvEntrada = binding.entrada
 
-        supportActionBar?.hide()
-        makeNumbers()
-        makeExpressions()
-        clear(expression, result)
+        binding.btnNumber0.setOnClickListener {
+            getDigitos(binding.btnNumber0)
+        }
+        binding.btnNumberOne.setOnClickListener {
+            getDigitos(binding.btnNumberOne)
+        }
+        binding.btnNumberTwo.setOnClickListener {
+            getDigitos(binding.btnNumberTwo)
+        }
+        binding.btnNumberThree.setOnClickListener {
+            getDigitos(binding.btnNumberThree)
+        }
+        binding.btnNumberFour.setOnClickListener {
+            getDigitos(binding.btnNumberFour)
+        }
+        binding.btnNumberFive.setOnClickListener {
+            getDigitos(binding.btnNumberFive)
+        }
+        binding.btnNumberSix.setOnClickListener {
+            getDigitos(binding.btnNumberSix)
+        }
+        binding.btnNumberSeven.setOnClickListener {
+            getDigitos(binding.btnNumberSeven)
+        }
+        binding.btnNumberEight.setOnClickListener {
+            getDigitos(binding.btnNumberEight)
+        }
+        binding.btnNumberNine.setOnClickListener {
+            getDigitos(binding.btnNumberNine)
+        }
 
     }
 
-
-    fun makeExpressions() {
-        var expression = binding.expression
-
-        val multiply = binding.btnMultiply.setOnClickListener {
-            expression.append("*")
-        }
-
-        val division = binding.btnDivision.setOnClickListener {
-            expression.append("/")
-        }
-
-        val minus = binding.btnMinus.setOnClickListener {
-            expression.append("-")
-        }
-
-        val plus = binding.btnPlus.setOnClickListener {
-            expression.append("+")
-        }
+    fun getDigitos(view: View) {
+        tvEntrada?.append((view as Button).text)
     }
 
-    fun makeNumbers(): AppCompatTextView {
-        var expression = binding.expression
-        val numberZero = binding.btnNumber0.setOnClickListener {
-            expression.append("0")
-        }
-        val numberOne = binding.btnNumberOne.setOnClickListener {
-            expression.append("1")
-        }
-        val numberTwo = binding.btnNumberTwo.setOnClickListener {
-            expression.append("2")
-        }
-        val numberThree = binding.btnNumberThree.setOnClickListener {
-            expression.append("3")
-        }
-        val numberFour = binding.btnNumberFour.setOnClickListener {
-            expression.append("4")
-        }
-        val numberFive = binding.btnNumberFive.setOnClickListener {
-            expression.append("5")
-        }
-        val numberSix = binding.btnNumberSix.setOnClickListener {
-            expression.append("6")
-        }
-        val numberSeven = binding.btnNumberSeven.setOnClickListener {
-            expression.append("7")
-        }
-        val numberEight = binding.btnNumberEight.setOnClickListener {
-            expression.append("8")
-        }
-        val numberNine = binding.btnNumberNine.setOnClickListener {
-            expression.append("9")
-        }
-        return expression
-    }
 
-    fun makeResult() {
-        var result = binding.result
-    }
-
-    private fun clear(expression: AppCompatTextView, result: AppCompatTextView) {
-        val clear = binding.btnClear.setOnClickListener {
-            expression.text = ""
-            result.text = "0"
-        }
-    }
 }
