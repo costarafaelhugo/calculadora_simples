@@ -65,6 +65,23 @@ class MainActivity : AppCompatActivity() {
             clearAll(binding.btnClear)
         }
 
+        binding.btnMinus.setOnClickListener {
+            getOperator(binding.btnMinus)
+        }
+        binding.btnPlus.setOnClickListener {
+            getOperator(binding.btnPlus)
+        }
+        binding.btnDivision.setOnClickListener {
+            getOperator(binding.btnDivision)
+        }
+        binding.btnMultiply.setOnClickListener {
+            getOperator(binding.btnMultiply)
+        }
+        binding.btnEquals.setOnClickListener {
+            getEqual(binding.btnEquals)
+        }
+
+
     }
 
     fun getDigitos(view: View) {
@@ -86,7 +103,51 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun isSumOperator(value: String): Boolean {
+    fun getOperator(view: View) {
+        tvEntrada?.text?.let {
+
+            if (lastNum && !verifyOperator(it.toString())) {
+                tvEntrada?.append((view as Button).text)
+                lastNum = false
+                lastDot = false
+
+            }
+        }
+
+
+    }
+
+    fun getEqual(view: View) {
+        if (lastNum) {
+            var value = tvEntrada?.text.toString()
+            var prefix = ""
+
+            try {
+                if (value.startsWith("-")) {
+                    prefix = "-"
+                    value = value.substring(1)
+                }
+                if (value.contains("-")) {
+                    val splitValue = value.split("-")
+                    var numberOne = splitValue[0]
+                    val numberTwo = splitValue[1]
+
+                    if (prefix.isNotEmpty()){
+                        numberOne = prefix + numberOne
+                    }
+                    var result = numberOne.toDouble() - numberTwo.toDouble()
+
+                    tvResultado?.text = result.toString()
+                }
+
+
+            } catch (e: ArithmeticException) {
+                e.printStackTrace()
+            }
+        }
+    }
+
+    private fun verifyOperator(value: String): Boolean {
         return if (value.startsWith("-")) {
             false
         } else {
@@ -96,6 +157,5 @@ class MainActivity : AppCompatActivity() {
                     || value.contains("-")
         }
     }
-
 
 }
