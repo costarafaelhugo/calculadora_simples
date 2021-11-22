@@ -12,6 +12,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private var tvEntrada: TextView? = null
     private var tvResultado: TextView? = null
+    var lastNum: Boolean = false
+    var lastDot: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +54,7 @@ class MainActivity : AppCompatActivity() {
             getDigitos(binding.btnNumberNine)
         }
         binding.btnDot.setOnClickListener {
-            getDigitos(binding.btnDot)
+            decimal(binding.btnDot)
         }
 
         binding.btnClear.setOnClickListener {
@@ -67,11 +69,32 @@ class MainActivity : AppCompatActivity() {
 
     fun getDigitos(view: View) {
         tvEntrada?.append((view as Button).text)
+        lastNum = true
+        lastDot = false
     }
 
     fun clearAll(view: View) {
         tvEntrada?.text = " "
         tvResultado?.text = " "
+    }
+
+    fun decimal(view: View) {
+        if (lastNum && !lastDot) {
+            tvEntrada?.append(".")
+            lastNum = false
+            lastDot = true
+        }
+    }
+
+    private fun isSumOperator(value: String): Boolean {
+        return if (value.startsWith("-")) {
+            false
+        } else {
+            value.contains("/")
+                    || value.contains("*")
+                    || value.contains("+")
+                    || value.contains("-")
+        }
     }
 
 
