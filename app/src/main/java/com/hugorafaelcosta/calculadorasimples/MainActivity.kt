@@ -132,10 +132,47 @@ class MainActivity : AppCompatActivity() {
                     var numberOne = splitValue[0]
                     val numberTwo = splitValue[1]
 
-                    if (prefix.isNotEmpty()){
+                    if (prefix.isNotEmpty()) {
                         numberOne = prefix + numberOne
                     }
-                    var result = numberOne.toDouble() - numberTwo.toDouble()
+                    var result =
+                        removeZeroAfterDot((numberOne.toDouble() - numberTwo.toDouble()).toString())
+
+                    tvResultado?.text = result.toString()
+                } else if (value.contains("+")) {
+                    val splitValue = value.split("+")
+                    var numberOne = splitValue[0]
+                    val numberTwo = splitValue[1]
+
+                    if (prefix.isNotEmpty()) {
+                        numberOne = prefix + numberOne
+                    }
+                    var result =
+                        removeZeroAfterDot((numberOne.toDouble() + numberTwo.toDouble()).toString())
+
+                    tvResultado?.text = result.toString()
+                } else if (value.contains("/")) {
+                    val splitValue = value.split("/")
+                    var numberOne = splitValue[0]
+                    val numberTwo = splitValue[1]
+
+                    if (prefix.isNotEmpty()) {
+                        numberOne = prefix + numberOne
+                    }
+                    var result =
+                        removeZeroAfterDot((numberOne.toDouble() / numberTwo.toDouble()).toString())
+
+                    tvResultado?.text = result.toString()
+                } else if (value.contains("*")) {
+                    val splitValue = value.split("*")
+                    var numberOne = splitValue[0]
+                    val numberTwo = splitValue[1]
+
+                    if (prefix.isNotEmpty()) {
+                        numberOne = prefix + numberOne
+                    }
+                    var result =
+                        removeZeroAfterDot((numberOne.toDouble() * numberTwo.toDouble()).toString())
 
                     tvResultado?.text = result.toString()
                 }
@@ -147,6 +184,15 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun removeZeroAfterDot(result: String): String {
+        var value = result
+        if (result.contains(".0"))
+            value = result.substring(0, result.length - 2)
+
+        return value
+    }
+
+
     private fun verifyOperator(value: String): Boolean {
         return if (value.startsWith("-")) {
             false
@@ -157,5 +203,4 @@ class MainActivity : AppCompatActivity() {
                     || value.contains("-")
         }
     }
-
 }
